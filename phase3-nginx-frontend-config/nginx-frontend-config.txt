@@ -1,0 +1,11 @@
+cd /var/www/html
+sudo rm *
+cd ~/TravelMemory/frontend
+sudo cp -r build/* /var/www/html/
+
+sudo nginx -t
+sudo systemctl restart nginx
+
+
+--> testing
+http://3.109.71.149/

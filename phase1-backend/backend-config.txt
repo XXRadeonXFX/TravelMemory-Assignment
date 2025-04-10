@@ -1,0 +1,15 @@
+git clone https://github.com/UnpredictablePrashant/TravelMemory.git
+cd TravelMemory/backend
+sudo nano .env 
+------------------------------------------------------------------------------------------------
+MONGO_URI=mongodb+srv://radeonxfx:1029384756!Sound@cluster0.gdl7f.mongodb.net/TravelMemory
+PORT=3000
+------------------------------------------------------------------------------------------------
+npm install
+node index.js 
+
+
+
+
+--> testing:
+http://13.203.123.95:3000/trip
