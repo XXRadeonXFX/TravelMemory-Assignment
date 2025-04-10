@@ -160,7 +160,7 @@ This phase sets up the frontend infrastructure for the TravelMemory MERN app usi
 
 - Access your React app via:
   
-  🌐 `http://3.109.71.149/`
+  🌐 `http://<frontend EC2 instance Public Ip>/`
 
 ---
 
