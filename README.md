@@ -183,7 +183,7 @@ This script automates the process of creating **Amazon Machine Images (AMIs)** f
 
 ---
 
-## 📂 File: `create-ami-and-launch.py`
+## 📂 File: `autoscaling-instances.py`
 
 ### 📚 Functions
 
@@ -220,7 +220,7 @@ pip install boto3
 Run the script directly:
 
 ```bash
-python create-ami-and-launch.py
+python autoscaling-instances.py
 ```
 
 ---
@@ -267,7 +267,7 @@ This script automates the process of creating an **Application Load Balancer (AL
 
 ---
 
-## 📂 File: `add-load-balancer.py`
+## 📂 File: `Adding-LOAD-Balancer.py`
 
 ### 📚 Key Functions
 
@@ -304,7 +304,7 @@ pip install boto3
 Run the script:
 
 ```bash
-python add-load-balancer.py
+python Adding-LOAD-Balancer.py
 ```
 
 ---
