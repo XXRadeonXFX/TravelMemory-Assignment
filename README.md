@@ -23,7 +23,7 @@ TravelMemory-Assignment/
 
 ---
 
-## ✅ Phase 1 – Backend EC2 Instance Setup
+# ✨ Phase 1 – Backend EC2 Instance Setup
 
 This phase sets up the backend infrastructure for the TravelMemory MERN app using AWS EC2 and Python automation.
 
@@ -85,7 +85,7 @@ Once the server is running, test it using:
 
 ---
 
-## ✅ Phase 2 – Frontend EC2 Instance Setup
+# ✨ Phase 2 – Frontend EC2 Instance Setup
 
 This phase sets up the frontend infrastructure for the TravelMemory MERN app using AWS EC2 and Python automation.
 
@@ -144,7 +144,7 @@ This phase sets up the frontend infrastructure for the TravelMemory MERN app usi
 
 ---
 
-## ✅ Phase 3 – Setup NGINX Proxy for Production
+# ✨ Phase 3 – Setup NGINX Proxy for Production
 
 - Build the frontend:
   ```bash
@@ -167,10 +167,7 @@ This phase sets up the frontend infrastructure for the TravelMemory MERN app usi
   🌐 `http://<frontend EC2 instance Public Ip>/`
 
 ---
-
-## ✅ Phase 4 – Instance Scaling
-
-# ✨ AMI Creation and Instance Launch with Elastic IP
+# ✨ Phase 4 - AMI Creation and Instance Launch with Elastic IP
 
 This script automates the process of creating **Amazon Machine Images (AMIs)** from existing EC2 instances and then launches new instances using those AMIs. It also associates a fresh **Elastic IP** to each new instance with appropriate tagging.
 
@@ -254,7 +251,7 @@ New Backend Instance: <backend_instance_id> with Elastic IP: <backend_eip>
 
 ---
 
-## ✅ Phase 5 – Load Balancer Integration
+# ✨ Phase 5 – Load Balancer Integration
 
 Python automation to:
 - Create an Application Load Balancer (ALB)
@@ -266,7 +263,7 @@ File:
 
 ---
 
-## ✅ Phase 6 – Domain Mapping with Cloudflare
+# ✨ Phase 6 – Domain Mapping with Cloudflare
 
 Scripts (coming soon or manually configured) to:
 - Point a custom domain (e.g., travelmemory.yourdomain.com) to the ALB via Cloudflare
