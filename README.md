@@ -251,15 +251,90 @@ New Backend Instance: <backend_instance_id> with Elastic IP: <backend_eip>
 
 ---
 
-# ✨ Phase 5 – Load Balancer Integration
+# ⚖️  Phase 5 - Load Balancer Setup with Auto Subnet and EC2 Target Registration
 
-Python automation to:
-- Create an Application Load Balancer (ALB)
-- Register multiple frontend EC2 instances as targets
-- Health check integration and listener setup
+This script automates the process of creating an **Application Load Balancer (ALB)** in AWS. It registers existing frontend EC2 instances by their public IPs and ensures the load balancer is spread across two availability zones by creating a secondary subnet automatically.
 
-File:
-- `Adding-LOAD-Balancer.py`
+---
+
+## ⚙️ Features
+
+- Retrieve frontend EC2 instances from provided public IPs
+- Create a new subnet in a different availability zone
+- Create a target group and register frontend EC2 instances
+- Launch an internet-facing ALB across two subnets
+- Create an HTTP listener pointing to the target group
+
+---
+
+## 📂 File: `add-load-balancer.py`
+
+### 📚 Key Functions
+
+#### `get_subnet_az(subnet_id)`
+- Returns the Availability Zone of a given subnet
+
+#### `create_subnet_in_different_az(vpc_id, existing_subnet_az, cidr_block)`
+- Creates a new subnet in a different AZ than the provided one
+- Enables auto-assignment of public IPs on launch
+
+#### `create_load_balancer_with_instances(frontend_ips, vpc_id, subnet_ids, security_group_id)`
+- Finds instance IDs from IPs
+- Creates a target group
+- Registers instances
+- Launches ALB
+- Configures listener to forward traffic to registered targets
+
+---
+
+## 📆 Prerequisites
+
+- AWS CLI configured (`aws configure`)
+- IAM role/user with EC2 and ELBv2 permissions
+- Boto3 installed:
+
+```bash
+pip install boto3
+```
+
+---
+
+## ⚡ Usage
+
+Run the script:
+
+```bash
+python add-load-balancer.py
+```
+
+---
+
+## 🧩 Sample Configuration (Hardcoded in `main()`)
+
+```python
+frontend_ips = ['<frontend_ip_1>', '<frontend_ip_2>']
+vpc_id = '<vpc_id>'
+existing_subnet_id = '<subnet_id>'
+security_group_id = '<security_group_id>'
+```
+
+---
+
+## 📝 Example Output
+
+```text
+Existing subnet is in ap-south-1b
+Creating new subnet in ap-south-1a
+Created subnet <new_subnet_id> in ap-south-1a
+Found instance <instance_id> with IP <frontend_ip>
+...
+Created load balancer: FrontendLoadBalancer with ARN: <lb_arn>
+Created listener for load balancer
+Load balancer setup complete!
+Load Balancer DNS: <dns_name>
+Target Group ARN: <target_group_arn>
+```
+
 
 ---
 
