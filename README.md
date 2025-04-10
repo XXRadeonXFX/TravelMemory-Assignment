@@ -121,7 +121,7 @@ This phase sets up the frontend infrastructure for the TravelMemory MERN app usi
      ```
      Add:
      ```js
-     export const baseUrl = process.env.REACT_APP_BACKEND_URL || "http://13.203.123.95:3000";
+     export const baseUrl = process.env.REACT_APP_BACKEND_URL || "http://<backend EC2 instance Public Ip>:3000";
      ```
 
   3. **Install dependencies**:
