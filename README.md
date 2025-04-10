@@ -2,6 +2,10 @@
 
 This project demonstrates the full deployment lifecycle of a MERN (MongoDB, Express, React, Node.js) application called **TravelMemory**, automated and scaled on AWS using Python, Shell, and Boto3.
 
+## 🧭 Architecture Diagram
+
+![Architecture Diagram](./images/architecture.png)
+
 ---
 
 ## 📁 Project Structure
