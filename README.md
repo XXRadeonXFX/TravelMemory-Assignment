@@ -237,7 +237,5 @@ Full deployment steps, architecture diagram, IP configurations, and screenshots 
 ## 🧠 Contributors
 
 👨‍💻 Prince Thakur  
-🔧 DevOps & Cloud Automation – DXC Technology  
-📧 [Add email/LinkedIn if required]
-
+🔧 DevOps & Cloud Automation 
 ---
