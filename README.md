@@ -21,38 +21,146 @@ TravelMemory-Assignment/
 
 ## ✅ Phase 1 – Backend EC2 Instance Setup
 
-Scripts and files to:
-- Create a key pair
-- Launch a backend EC2 instance
-- Attach an Elastic IP
-- Configure Node.js/Express and connect to MongoDB
+This phase sets up the backend infrastructure for the TravelMemory MERN app using AWS EC2 and Python automation.
 
-Files:
-- `create-ec2-key-pair.py`
-- `Backend-ec2-instance-elastic-ip.py`
-- `setup-server.sh`
+### 📾 Steps Performed
+
+- ✅ cd into phase1-backend directory and run python script to Create a backend key pair using:
+  ```bash
+  python create-ec2-key-pair.py
+  ```
+
+- ✅ Launch a backend EC2 instance:
+  ```bash
+  python Backend-ec2-instance-elastic-ip.py
+  ```
+
+- ✅ Python script will:
+  - Launch the instance
+  - Automatically assign an **Elastic IP**
+  - Generate a shell script `setup-server.sh` for provisioning
+
+- ✅ SSH and configure the instance:
+  ```bash
+  sudo ./setup-server.sh
+  ```
+
+- ✅ SSH into the instance using the private key and do the following:
+
+  1. **Clone the repository**:
+     ```bash
+     git clone https://github.com/UnpredictablePrashant/TravelMemory.git
+     cd TravelMemory/backend
+     ```
+
+  2. **Configure environment variables**:
+     ```bash
+     sudo nano .env
+     ```
+
+     Add the following:
+     ```env
+     MONGO_URI=<your MongoDB URI>
+     PORT=3000
+     ```
+
+  3. **Install dependencies & start the backend server**:
+     ```bash
+     npm install
+     node index.js
+     ```
+
+---
+
+### 🔎 Backend API Testing
+
+Once the server is running, test it using:
+
+🌐 `http://<backend EC2 instance Public Ip>:3000/trip`
+
 
 ---
 
 ## ✅ Phase 2 – Frontend EC2 Instance Setup
 
-Scripts and files to:
-- Deploy React frontend
-- Serve app using NGINX
-- Assign static Elastic IP
+This phase sets up the frontend infrastructure for the TravelMemory MERN app using AWS EC2 and Python automation.
 
-Files:
-- `create-ec2-key-pair.py`
-- `Frontend-ec2-instance-elastic-ip.py`
-- `setup-server.sh`
+### 📖 Steps Performed
+
+- ✅ Navigate to the `phase2-frontend/` directory and create a frontend key pair:
+  ```bash
+  python create-ec2-key-pair.py
+  ```
+
+- ✅ Launch a frontend EC2 instance:
+  ```bash
+  python Frontend-ec2-instance-elastic-ip.py
+  ```
+
+- ✅ Python script will:
+  - Launch the instance
+  - Automatically assign an **Elastic IP**
+  - Generate a shell script `setup-server.sh` for provisioning
+
+- ✅ SSH and configure the instance:
+  ```bash
+  sudo ./setup-server.sh
+  ```
+
+- ✅ SSH into the instance using the private key and do the following:
+
+  1. **Clone the repository**:
+     ```bash
+     git clone https://github.com/UnpredictablePrashant/TravelMemory.git
+     cd TravelMemory/frontend
+     ```
+
+  2. **Update the frontend base URL**:
+     ```bash
+     nano src/url.js
+     ```
+     Add:
+     ```js
+     export const baseUrl = process.env.REACT_APP_BACKEND_URL || "http://13.203.123.95:3000";
+     ```
+
+  3. **Install dependencies**:
+     ```bash
+     npm install
+     ```
+
+  4. **Start the frontend server for testing**:
+     ```bash
+     npm start
+     ```
+     Test on:
+     
+     🌐 `http://<frontend EC2 instance Public Ip>:3000`
+
 
 ---
 
-## ✅ Phase 3 – NGINX Configuration
+## ✅ Phase 3 – Setup NGINX Proxy for Production
 
-Includes:
-- `nginx-frontend-config.txt` for NGINX reverse proxy
-- Auto-start React build for production environment
+- Build the frontend:
+  ```bash
+  npm run build
+  ```
+
+- Copy the build to NGINX public directory:
+  ```bash
+  sudo cp -r build/* /var/www/html/
+  ```
+
+- Test and restart NGINX:
+  ```bash
+  sudo nginx -t
+  sudo systemctl restart nginx
+  ```
+
+- Access your React app via:
+  
+  🌐 `http://3.109.71.149/`
 
 ---
 
