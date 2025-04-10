@@ -170,13 +170,87 @@ This phase sets up the frontend infrastructure for the TravelMemory MERN app usi
 
 ## ✅ Phase 4 – Instance Scaling
 
-Python script using Boto3 to:
-- Scale out EC2 instances (frontend/backend)
-- Tag and configure instances for scalability
+# ✨ AMI Creation and Instance Launch with Elastic IP
 
-Files:
-- `autoscaling-instances.py`
-- `autoscale-readme.txt`
+This script automates the process of creating **Amazon Machine Images (AMIs)** from existing EC2 instances and then launches new instances using those AMIs. It also associates a fresh **Elastic IP** to each new instance with appropriate tagging.
+
+---
+
+## ⚙️ Features
+
+- Create AMIs from existing EC2 instances (frontend & backend)
+- Wait until the AMIs are available
+- Launch new EC2 instances using the created AMIs
+- Allocate new Elastic IPs
+- Tag Elastic IPs and associate them with the new instances
+
+---
+
+## 📂 File: `create-ami-and-launch.py`
+
+### 📚 Functions
+
+#### `create_ami(instance_id, name)`
+- Creates an AMI for a given instance
+- Waits until the AMI becomes available
+
+#### `launch_instance_with_eip(ami_id, instance_type, subnet_id, security_group_id, instance_name, eip_name)`
+- Launches a new EC2 instance from the AMI
+- Allocates an Elastic IP
+- Tags and associates the IP with the instance
+
+#### `main()`
+- Hardcoded values for frontend and backend instance IDs
+- Creates AMIs
+- Launches new instances with EIPs
+
+---
+
+## 📆 Prerequisites
+
+- AWS CLI configured (`aws configure`)
+- IAM user/role with sufficient EC2 & Elastic IP permissions
+- Boto3 installed:
+
+```bash
+pip install boto3
+```
+
+---
+
+## ⚡ Usage
+
+Run the script directly:
+
+```bash
+python create-ami-and-launch.py
+```
+
+---
+
+## 🔧 Sample Hardcoded Inputs (from script)
+
+```python
+frontend_instance_id = '<frontend_instance_id>'  # TM-Prince-Frontend
+backend_instance_id = '<backend_instance_id>'    # TM-Prince-Backend
+subnet_id = '<subnet_id>'                        # e.g., ap-south-1b
+security_group_id = '<security_group_id>'        # e.g., TravelMemorySG-Prince
+```
+
+---
+
+## 🔍 Example Output
+
+```text
+Creating AMI <ami-id> for TM-Prince-Frontend...
+AMI <ami-id> is now available
+Launching instance <instance-id> from AMI <ami-id>...
+Elastic IP <elastic-ip> named 'FrontendEIP-Copy1' allocated and associated
+...
+Summary:
+New Frontend Instance: <frontend_instance_id> with Elastic IP: <frontend_eip>
+New Backend Instance: <backend_instance_id> with Elastic IP: <backend_eip>
+```
 
 ---
 
